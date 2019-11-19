@@ -1,0 +1,66 @@
+<form [formGroup]="pessoainfo" (ngSubmit)="update()">
+    <div class="container-fluid containerAddconfig">
+        <h4 class="h4Addconfig"><strong>Editar Cadastro</strong></h4>
+        <div class="container-fluid containerformAddconfig">
+        <div class="row AddH5rowconfig">
+        <h5>Altere as informações desejadas e clique em salvar:</h5>
+        </div>
+        <div class="form-group">
+        <div class="form-row Addrowsconfig">
+            <div class="col">
+                <label>CPF:
+                <input type="text" class="form-control Addinputconfig" mask="000.000.000-00" placeholder="" formControlName="cpf">
+                </label>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <div class="form-row Addrowsconfig">
+            <div class="col">
+                <label>Nome:
+                <input type="text" class="form-control Addinputconfig" maxlength="20" placeholder="" formControlName="nome">
+                </label>
+            </div>
+            <div class="col">
+                <label>Sobre Nome:
+                <input type="text" class="form-control Addinputconfig" maxlength="20" placeholder="" formControlName="sobre_Nome">
+                </label>
+            </div>
+        </div>
+        <div class="form-row Addrowsconfig">
+            <div class="col">
+                <label>Email:
+                <input type="text" class="form-control Addinputconfig" maxlength="50" placeholder="" formControlName="email">
+                </label>
+            </div>
+            <div class="col">
+                <label>Sexo:
+                <select type="text" class="form-control Addinputconfig" placeholder="" formControlName="sexo">
+                <option>Masculino</option>
+                <option>Feminino</option>
+                </select>
+                </label>
+            </div>
+        </div>
+        <div class="form-row Addrowsconfig">
+            <div class="col">
+                <label>Data de Nascimento:
+                <input type="date" class="form-control Addinputconfig" placeholder="" formControlName="dT_Nascimento">
+                </label>
+            </div>
+            <div class="col">
+            </div>
+            </div>
+        </div>
+        </div>
+    <br>
+       <div class="row">
+           <div class="col">
+           <button class="Addbuttonconfig" routerLink="/pessoas">Voltar</button>
+           </div>
+           <div class="col">
+           <button type="submit" class="Addbuttonconfig">Salvar</button>
+        </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,67 @@
+<div class="container-fluid Containergridconfig">   
+    <div>
+        <h4 class="h4casdastroconfig"><strong>Usuários Cadastrados:</strong></h4>
+    </div>
+    <div class="row rowconfig">
+        <div class="col-lg-1 colconfig"><strong>ID</strong></div>
+        <div class="col-lg-1 colconfig"><strong>CPF</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Nome</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sobre Nome</strong></div>
+        <div class="col-lg-2 colconfig"><strong>Email</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sexo</strong></div>
+        <div class="col-lg-2 colconfig"><strong>Data de Nascimento</strong></div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row rowconfig"*ngFor="let item of listapessoas">
+        <div class="col-lg-1 colconfig">{{item.id}}</div>
+        <div class="col-lg-1 colconfig">{{item.cpf}}</div>
+        <div class="col-lg-1 colconfig">{{item.nome}}</div>
+        <div class="col-lg-1 colconfig">{{item.sobre_Nome}}</div>
+        <div class="col-lg-2 colconfig">{{item.email}}</div>
+        <div class="col-lg-1 colconfig">{{item.sexo}}</div>
+        <div class="col-lg-2 colconfig">{{item.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>
+        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" routerLink="/editar-pessoa/{{item.id}}">Editar</button></div>
+        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="delete(item.id)">Deletar</button></div>
+        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="getone(item.id)">Selecionar</button></div>
+    </div>
+    <br>
+    <div class="row AddH5rowconfig"*ngIf="umapessoa">
+        <h5>Cadastro Selecionado:</h5>
+    </div>
+    <div class="row rowconfig"*ngIf="umapessoa">
+        <div class="col-lg-1 colconfig"><strong>ID</strong></div>
+        <div class="col-lg-1 colconfig"><strong>CPF</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Nome</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sobre Nome</strong></div>
+        <div class="col-lg-2 colconfig"><strong>Email</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sexo</strong></div>
+        <div class="col-lg-2 colconfig"><strong>Data de Nascimento</strong></div>
+    </div>
+    <div class="row rowtextconfig"*ngIf="umapessoa">
+        <div class="col-lg-1 colconfig">{{umapessoa.id}}</div>
+        <div class="col-lg-1 colconfig">{{umapessoa.cpf}}</div>
+        <div class="col-lg-1 colconfig">{{umapessoa.nome}}</div>
+        <div class="col-lg-1 colconfig">{{umapessoa.sobre_Nome}}</div>
+        <div class="col-lg-2 colconfig">{{umapessoa.email}}</div>
+        <div class="col-lg-1 colconfig">{{umapessoa.sexo}}</div>
+        <div class="col-lg-2 colconfig">{{umapessoa.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>
+        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="ocultar()">Ocultar Seleção</button></div>
+    </div>
+</div>
+
+<div class="container">
+<div class="modal fade" id="Modal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deletar Cadastro:</h5>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+    

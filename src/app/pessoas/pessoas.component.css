@@ -1,0 +1,40 @@
+.rowconfig{
+    background-color: snow;
+    margin: 0px;
+    border: 1px solid;
+    font-size: 14px;
+}
+.h4casdastroconfig{
+    margin: 0px;
+    height: 50px;
+    padding: 15px 5px 10px 5px;
+    border-bottom: 2px solid;
+}
+.colconfig{
+    border-right: 1px solid;
+    padding: 2px 5px;
+    border-color: black;
+    
+}
+.Containergridconfig{
+    background-color: rgb(209, 209, 209);
+    margin: 0px;
+    padding: 0px 180px 10px 15px
+}
+.btnconfig{
+    padding: 0px;
+    border: 2px solid;
+}
+.rowtextconfig{
+    background-color: snow;
+    margin: 0px;
+    border: 1px solid;
+    font-size: 14px;
+    color: crimson;
+    border-color: black;
+}
+.AddH5rowconfig{
+    padding: 5px 5px;
+    margin: 0px;
+    border-bottom: 2px solid;
+}

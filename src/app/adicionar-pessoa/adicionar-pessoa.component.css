@@ -1,0 +1,32 @@
+.h4Addconfig{
+    margin: 0px;
+    height: 50px;
+    padding: 15px 5px 10px 5px
+}
+.containerAddconfig{
+    background-color: rgb(209, 209, 209);
+    margin: 0px;
+    padding: 0px 180px 10px 15px
+}
+.containerformAddconfig{
+    background-color: snow;
+    border: 2px solid;
+    margin: 0px;
+    padding: 0px;
+}
+.AddH5rowconfig{
+    padding: 5px 5px;
+    margin: 0px;
+    border-bottom: 2px solid;
+}
+.Addrowsconfig{
+    margin: 0px;
+    padding: 0px 5px;
+}
+.Addinputconfig{
+    min-width: 400px; 
+}
+.Addbuttonconfig{
+    width: 100px;
+    height: 30px;
+}

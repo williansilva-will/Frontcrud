@@ -1,0 +1,16 @@
+.configcontainer{
+    background-color: rgb(0, 0, 0); 
+    height: 70px;
+    padding: 0px 25px;
+}
+.confignav{
+    padding: 0;
+}
+.textConfig{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+}
+.text2Config{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
