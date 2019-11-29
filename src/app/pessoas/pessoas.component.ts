@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebapiService } from 'src/app/webapi.service';
-import { ModeloPessoa, NovaPessoa } from 'src/app/modelo-pessoa';
+import { ModeloPessoa } from 'src/app/modelo-pessoa';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,9 +12,8 @@ export class PessoasComponent implements OnInit {
 
   listapessoas: ModeloPessoa[];
   umapessoa: ModeloPessoa;
-  
 
-  constructor(private WebapiService: WebapiService, private toasterService: ToastrService) { }
+  constructor(private WebapiService: WebapiService, private toasterService: ToastrService) {}
 
   ngOnInit() {
     this.getall()
@@ -25,20 +24,16 @@ export class PessoasComponent implements OnInit {
       for (let x = 0; x < this.listapessoas.length; x++){
         this.listapessoas[x].cpf = this.listapessoas[x].cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
       }
-    }, () => {
     })
   } 
   delete(id: string): void {
     if(window.confirm('Deseja Deletar este Cadastro?')){
       this.WebapiService.deletePessoa(id).subscribe(() => {
-      this.toasterService.success('Usuário Removido com Sucesso');
+      
       location.reload();
+      this.toasterService.success('Cadastro Removido com Sucesso');
       }) 
     }
-  }
-
-  ocultar(){
-    location.reload();
   }
   
   getone(id: string){

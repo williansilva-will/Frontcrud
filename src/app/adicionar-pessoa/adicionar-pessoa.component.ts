@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { WebapiService } from 'src/app/webapi.service';
-import { ModeloPessoa, NovaPessoa } from 'src/app/modelo-pessoa';
-import { Route, Router } from '@angular/router';
+import { ModeloPessoa } from 'src/app/modelo-pessoa';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Validators, FormBuilder, FormGroup, FormControl, Validator } from '@angular/forms';
-import { isCPF, formatToCPF } from 'brazilian-values';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Validaçõesservice } from 'src/app/validações.service';
 
 @Component({
@@ -15,34 +14,29 @@ import { Validaçõesservice } from 'src/app/validações.service';
 export class AdicionarPessoaComponent implements OnInit {
 
   NovaPessoa: FormGroup;
-  Novo : ModeloPessoa;
+  Novo: ModeloPessoa;
   
   constructor(private WebapiService: WebapiService, private _route: Router, private toasterService: ToastrService) { }
 
   ngOnInit() {
     this.NovaPessoa = new FormGroup({
       cpf: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern(/^[0-9]{11}$/),
         Validaçõesservice.ValidaCpf,
       ])),
       nome: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern(/^[A-Za-zÀ-Ÿ][a-zÀ-ÿ']+([A-Za-zÀ-ÿ' ]?)*$/),
+        Validaçõesservice.ValidaNome,
       ])),
       sobre_Nome: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern(/^[A-Za-zÀ-Ÿ][a-zÀ-ÿ']+([A-Za-zÀ-ÿ' ]?)*$/),
+        Validaçõesservice.ValidaSobreNome,
       ])),
       email: new FormControl(null, Validators.compose([
-        Validators.required,
-        Validators.pattern(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)?$/i),
+        Validaçõesservice.ValidaEmail,
       ])),
       sexo: new FormControl(null, Validators.compose([
-        Validators.required,
+        Validaçõesservice.ValidaSexo,
       ])),
       dT_Nascimento: new FormControl(null, Validators.compose([
-        Validators.required,
+        Validaçõesservice.ValidaDTnascimento,
       ]))
     })
   }
@@ -59,76 +53,71 @@ export class AdicionarPessoaComponent implements OnInit {
     }
     else
     {
-      this.toasterService.error('Erro ao Cadastrar Usuário!');
+      this.toasterService.error('Erro ao Adicionar Cadastro!');
     }
   }
 
-  
-
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-  Validacampos(criarPessoa: NovaPessoa){
-    let NomeRegex = /^[A-Z][a-zA-Z]*[a-zA-Z]+[a-zA-Z]*$/;
-    let EmailRegex =/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    
-    if(!criarPessoa.cpf || criarPessoa.cpf == null){
-      alert("Digite o Cpf!");
-      return false;
-    }
-    if(!criarPessoa.nome || criarPessoa.nome == null){
-      alert("Digite o Nome!");
-      return false;
-    }
-    if(!NomeRegex.test(criarPessoa.nome)){
-      alert("Nome Inválido!");
-      return false;
-    }
-    if(!criarPessoa.sobre_Nome || criarPessoa.sobre_Nome == null){
-      alert("Digite o sobrenome!");
-      return false;
-    }
-    if(!NomeRegex.test(criarPessoa.sobre_Nome)){
-      alert("Sobrenome Inválido");
-      return false;
-    }
-    if(!criarPessoa.email || criarPessoa.email == null){
-      alert("Digite o Email!");
-      return false;
-    }
-    if(!EmailRegex.test(criarPessoa.email)){
-      alert("Email Inválido");
-      return false;
-    }
-    if(!criarPessoa.dT_Nascimento || criarPessoa.dT_Nascimento == null){
-      alert("Informe a Data de Nascimento!");
-      return false;
-    }
-    if(!criarPessoa.sexo || criarPessoa.sexo == null){
-      alert("Informe o Sexo!");
-      return false;
-    }
-    else
-    {
-      return true;
-    }
+  get nome() {
+    return this.NovaPessoa.get('nome');
   }
-  ValidaCpf(criarPessoa: NovaPessoa){
-    if(criarPessoa.cpf.length != 11){
-      alert("Cpf Inválido");
-      return false;
-    }
+
+  get email() {
+    return this.NovaPessoa.get('email');
   }
+
+  get cpf() {
+    return this.NovaPessoa.get('cpf');
+  }
+
+  get dT_Nascimento() {
+    return this.NovaPessoa.get('dT_Nascimento');
+  }
+
+  get sobre_Nome() {
+    return this.NovaPessoa.get('sobre_Nome');
+  }
+
+  get sexo() {
+    return this.NovaPessoa.get('sexo');
+  }
+
+  teste(erro) {
+    if(erro.cpfRequired)
+    return "O Campo CPF é de Preenchimento Obrigatório!";
+
+    if(erro.cpfInvalido)
+    return "O CPF Inserido é Inválido!"
+
+    if(erro.nomeRequired)
+    return "O Campo Nome é de Preenchimento Obrigatório!";
+
+    if(erro.nomeInvalido)
+    return "O Nome Inserido é Inválido!"
+
+    if(erro.sobrenomeRequired)
+    return "O Campo Sobrenome é de Preenchimento Obrigatório!";
+
+    if(erro.sobrenomeInvalido)
+    return "O Sobrenome Inserido é Inválido!"
+
+    if(erro.emailRequired)
+    return "O Campo Email é de Preenchimento Obrigatório!";
+
+    if(erro.emailInvalido)
+    return "O Email Inserido é Inválido!"
+
+    if(erro.sexoRequired)
+    return "O Campo Sexo deve ter Alguma Opção Selecionada!";
+
+    if(erro.dtnascimentoRequired)
+    return "A data de Nascimento deve ser Informada!";
+
+    if(erro.datafuturaInvalido)
+    return "Não são Permitidas Datas de Nascimento Futuras!"
+
+    if(erro.datalimiteInvalido)
+    return "Não são Permitidas Datas de Nascimento Anteriores à 1900!!"
+  }
+
+
 }

@@ -27,10 +27,11 @@
         <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="getone(item.id)">Selecionar</button></div>
     </div>
     <br>
-    <div class="row AddH5rowconfig"*ngIf="umapessoa">
+    <div class="fixed footerConfig">
+    <div class="row AddH5rowconfig">
         <h5>Cadastro Selecionado:</h5>
     </div>
-    <div class="row rowconfig"*ngIf="umapessoa">
+    <div class="row rowconfig">
         <div class="col-lg-1 colconfig"><strong>ID</strong></div>
         <div class="col-lg-1 colconfig"><strong>CPF</strong></div>
         <div class="col-lg-1 colconfig"><strong>Nome</strong></div>
@@ -47,21 +48,11 @@
         <div class="col-lg-2 colconfig">{{umapessoa.email}}</div>
         <div class="col-lg-1 colconfig">{{umapessoa.sexo}}</div>
         <div class="col-lg-2 colconfig">{{umapessoa.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>
-        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="ocultar()">Ocultar Seleção</button></div>
     </div>
+    </div>
+    <br>
 </div>
 
-<div class="container">
-<div class="modal fade" id="Modal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Deletar Cadastro:</h5>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 
 
     

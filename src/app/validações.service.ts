@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '../../node_modules/@angular/forms';
+import { isCPF } from 'brazilian-values';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,16 @@ import { AbstractControl } from '../../node_modules/@angular/forms';
 
 export class Validaçõesservice {
   
-  static ValidaCpf(controle: AbstractControl) {
-    const cpf = controle.value;
-
-    let soma: number = 0;
-    let resto: number;
+  static ValidaCpf(control: AbstractControl) 
+  {
+    const cpf = control.value;
     let valido: boolean;
+    const regex = new RegExp(/^[0-9]{11}$/);
 
-    const regex = new RegExp('[0-9]{11}');
+    if(cpf == null || cpf == "")
+     {
+       return{ cpfRequired: true };
+     }
 
     if (
       cpf == '00000000000' ||
@@ -30,25 +33,100 @@ export class Validaçõesservice {
       !regex.test(cpf)
     )
       valido = false;
-    else {
-      for (let i = 1; i <= 9; i++)
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-      resto = (soma * 10) % 11;
-
-      if (resto == 10 || resto == 11) resto = 0;
-      if (resto != parseInt(cpf.substring(9, 10))) valido = false;
-
-      soma = 0;
-      for (let i = 1; i <= 10; i++)
-        soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-      resto = (soma * 10) % 11;
-
-      if (resto == 10 || resto == 11) resto = 0;
-      if (resto != parseInt(cpf.substring(10, 11))) valido = false;
+    else 
+    {
+    if(isCPF(cpf))
+    {
       valido = true;
     }
-    if (valido) return null;
+    }
+    
+    if (!valido) 
+    {
+      return { cpfInvalido: true };
+    }
+  }
 
-    return { cpfInvalido: true };
+  static ValidaEmail(control: AbstractControl)
+  {
+     const email = control.value;
+     const RegexEmail = RegExp(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.?([a-z]+)?$/i);
+
+     if(email == null || email == "")
+     {
+       return{ emailRequired: true };
+     }
+
+     if(!RegexEmail.test(email))
+     {
+      return { emailInvalido: true };
+     }
+     
+  }
+
+  static ValidaNome(control: AbstractControl)
+  {
+     const nome = control.value;
+     const RegexNome = RegExp(/^[A-Za-zÀ-Ÿ][a-zÀ-ÿ']+([A-Za-zÀ-ÿ' ]?)*$/);
+
+     if(nome == null || nome == "")
+     {
+       return{ nomeRequired: true };
+     }
+
+     if(!RegexNome.test(nome))
+     {
+      return { nomeInvalido: true };
+     }
+  }
+
+  static ValidaSobreNome(control: AbstractControl)
+  {
+     const sobrenome = control.value;
+     const RegexSobreNome = RegExp(/^[A-Za-zÀ-Ÿ][a-zÀ-ÿ']+([A-Za-zÀ-ÿ' ]?)*$/);
+
+     if(sobrenome == null || sobrenome == "")
+     {
+       return{ sobrenomeRequired: true };
+     }
+
+     if(!RegexSobreNome.test(sobrenome))
+     {
+      return { sobrenomeInvalido: true };
+     }
+     
+  }
+
+  static ValidaSexo(control: AbstractControl)
+  {
+    const sexo = control.value;
+
+    if(sexo == null || sexo == "")
+     {
+       return{ sexoRequired: true };
+     }
+  }
+
+  static ValidaDTnascimento(control: AbstractControl)
+  {
+    const dtnascimento = control.value;
+    const nascimento = new Date(dtnascimento);
+    const datenow = new Date();
+    const datelimit = new Date("01-01-1900");
+
+    if(dtnascimento == null || dtnascimento == "")
+     {
+       return { dtnascimentoRequired: true };
+     }
+     
+     if(nascimento > datenow)
+     {
+      return { datafuturaInvalido: true }
+     }
+     
+     if(nascimento < datelimit)
+     {
+       return { datalimiteInvalido: true }
+     }
   }
 }

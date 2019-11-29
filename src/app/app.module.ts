@@ -11,8 +11,8 @@ import { AdicionarPessoaComponent } from './adicionar-pessoa/adicionar-pessoa.co
 import { EditarPessoaComponent } from './editar-pessoa/editar-pessoa.component';
 import { DeletarPessoaComponent } from './deletar-pessoa/deletar-pessoa.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +31,6 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
 

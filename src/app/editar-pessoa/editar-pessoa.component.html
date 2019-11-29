@@ -11,6 +11,9 @@
                 <label>CPF:
                 <input type="text" class="form-control Addinputconfig" mask="000.000.000-00" placeholder="" formControlName="cpf">
                 </label>
+                    <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)"class="erroConfig">
+                    <small *ngIf="cpf.errors">{{ teste(cpf.errors) }}</small>
+                    </div>
             </div>
             <div class="col">
             </div>
@@ -20,11 +23,17 @@
                 <label>Nome:
                 <input type="text" class="form-control Addinputconfig" maxlength="20" placeholder="" formControlName="nome">
                 </label>
+                    <div *ngIf="nome.invalid && (nome.dirty || nome.touched)"class="erroConfig">
+                    <small *ngIf="nome.errors">{{ teste(nome.errors) }}</small>
+                    </div>
             </div>
             <div class="col">
                 <label>Sobre Nome:
                 <input type="text" class="form-control Addinputconfig" maxlength="20" placeholder="" formControlName="sobre_Nome">
                 </label>
+                    <div *ngIf="sobre_Nome.invalid && (sobre_Nome.dirty || sobre_Nome.touched)"class="erroConfig">
+                    <small *ngIf="sobre_Nome.errors">{{ teste(sobre_Nome.errors) }}</small>
+                    </div>
             </div>
         </div>
         <div class="form-row Addrowsconfig">
@@ -32,6 +41,9 @@
                 <label>Email:
                 <input type="text" class="form-control Addinputconfig" maxlength="50" placeholder="" formControlName="email">
                 </label>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)"class="erroConfig">
+                    <small *ngIf="email.errors">{{ teste(email.errors) }}</small>
+                    </div>
             </div>
             <div class="col">
                 <label>Sexo:
@@ -40,13 +52,19 @@
                 <option>Feminino</option>
                 </select>
                 </label>
+                    <div *ngIf="sexo.invalid && (sexo.dirty || sexo.touched)"class="erroConfig">
+                    <small *ngIf="sexo.errors">{{ teste(sexo.errors) }}</small>
+                    </div>
             </div>
         </div>
         <div class="form-row Addrowsconfig">
             <div class="col">
                 <label>Data de Nascimento:
-                <input type="date" class="form-control Addinputconfig" placeholder="" formControlName="dT_Nascimento">
+                <input type="datetime-local" class="form-control Addinputconfig" placeholder="" formControlName="dT_Nascimento">
                 </label>
+                    <div *ngIf="dT_Nascimento.invalid && (dT_Nascimento.dirty || dT_Nascimento.touched)" class="erroConfig">
+                    <small *ngIf="dT_Nascimento.errors">{{ teste(dT_Nascimento.errors) }}</small>
+                    </div>
             </div>
             <div class="col">
             </div>
@@ -59,7 +77,7 @@
            <button class="Addbuttonconfig" routerLink="/pessoas">Voltar</button>
            </div>
            <div class="col">
-           <button type="submit" class="Addbuttonconfig">Salvar</button>
+           <button type="submit" class="Addbuttonconfig" [disabled]="pessoainfo.invalid">Salvar</button>
         </div>
         </div>
     </div>
