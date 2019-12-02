@@ -6,7 +6,7 @@
         <div class="col-lg-1 colconfig"><strong>ID</strong></div>
         <div class="col-lg-1 colconfig"><strong>CPF</strong></div>
         <div class="col-lg-1 colconfig"><strong>Nome</strong></div>
-        <div class="col-lg-1 colconfig"><strong>Sobre Nome</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sobrenome</strong></div>
         <div class="col-lg-2 colconfig"><strong>Email</strong></div>
         <div class="col-lg-1 colconfig"><strong>Sexo</strong></div>
         <div class="col-lg-2 colconfig"><strong>Data de Nascimento</strong></div>
@@ -23,11 +23,10 @@
         <div class="col-lg-1 colconfig">{{item.sexo}}</div>
         <div class="col-lg-2 colconfig">{{item.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>
         <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" routerLink="/editar-pessoa/{{item.id}}">Editar</button></div>
-        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="delete(item.id)">Deletar</button></div>
+        <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="openModal(template, item.id)">Deletar</button></div>
         <div class="col-lg-1 colconfig"><button class="btn-block btnconfig" (click)="getone(item.id)">Selecionar</button></div>
     </div>
     <br>
-    <div class="fixed footerConfig">
     <div class="row AddH5rowconfig">
         <h5>Cadastro Selecionado:</h5>
     </div>
@@ -35,12 +34,12 @@
         <div class="col-lg-1 colconfig"><strong>ID</strong></div>
         <div class="col-lg-1 colconfig"><strong>CPF</strong></div>
         <div class="col-lg-1 colconfig"><strong>Nome</strong></div>
-        <div class="col-lg-1 colconfig"><strong>Sobre Nome</strong></div>
+        <div class="col-lg-1 colconfig"><strong>Sobrenome</strong></div>
         <div class="col-lg-2 colconfig"><strong>Email</strong></div>
         <div class="col-lg-1 colconfig"><strong>Sexo</strong></div>
         <div class="col-lg-2 colconfig"><strong>Data de Nascimento</strong></div>
     </div>
-    <div class="row rowtextconfig"*ngIf="umapessoa">
+    <div class="row rowtextconfig">
         <div class="col-lg-1 colconfig">{{umapessoa.id}}</div>
         <div class="col-lg-1 colconfig">{{umapessoa.cpf}}</div>
         <div class="col-lg-1 colconfig">{{umapessoa.nome}}</div>
@@ -49,9 +48,28 @@
         <div class="col-lg-1 colconfig">{{umapessoa.sexo}}</div>
         <div class="col-lg-2 colconfig">{{umapessoa.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>
     </div>
-    </div>
     <br>
+
+    <ng-template #template>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left"> Deseja Deletar Este Cadastro? </h4>
+            </div>
+            <div class="modal-body">
+                <div><strong>ID: </strong>{{umapessoa.id}}</div>
+                <div><strong>CPF: </strong>{{umapessoa.cpf}}</div>
+                <div><strong>Nome: </strong>{{umapessoa.nome}}</div>
+                <div><strong>Sobrenome: </strong>{{umapessoa.sobre_Nome}}</div>
+                <div><strong>Email: </strong>{{umapessoa.email}}</div>
+                <div><strong>Sexo: </strong>{{umapessoa.sexo}}</div>
+                <div><strong>Data de Nascimento: </strong>{{umapessoa.dT_Nascimento | date: 'dd/MM/yyyy'}}</div>  
+            </div>
+            <div class="modal-footer">
+                <button class="btn-block btnconfig" (click)="delete(umapessoa.id)">Deletar</button> 
+                <button class="btn-block btnconfig" (click)="ModalRef.hide()">Fechar</button>
+            </div>
+    </ng-template>
 </div>
+
 
 
 

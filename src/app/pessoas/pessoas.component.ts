@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WebapiService } from 'src/app/webapi.service';
 import { ModeloPessoa } from 'src/app/modelo-pessoa';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-pessoas',
@@ -12,12 +14,14 @@ export class PessoasComponent implements OnInit {
 
   listapessoas: ModeloPessoa[];
   umapessoa: ModeloPessoa;
+  ModalRef: BsModalRef;
 
-  constructor(private WebapiService: WebapiService, private toasterService: ToastrService) {}
+  constructor(private WebapiService: WebapiService, private toasterService: ToastrService, private ModalService: BsModalService) {}
 
   ngOnInit() {
     this.getall()
   }
+  
   getall(){
     this.WebapiService.getPessoas().subscribe(res => {
       this.listapessoas = res;
@@ -26,14 +30,12 @@ export class PessoasComponent implements OnInit {
       }
     })
   } 
+  
   delete(id: string): void {
-    if(window.confirm('Deseja Deletar este Cadastro?')){
       this.WebapiService.deletePessoa(id).subscribe(() => {
-      
-      location.reload();
       this.toasterService.success('Cadastro Removido com Sucesso');
       }) 
-    }
+      location.reload();
   }
   
   getone(id: string){
@@ -49,5 +51,10 @@ export class PessoasComponent implements OnInit {
       };
       this.umapessoa.cpf = this.umapessoa.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
     })
+  }
+
+  openModal(template, id: string) {
+    this.ModalRef = this.ModalService.show(template);
+    this.getone(id);
   }
 }

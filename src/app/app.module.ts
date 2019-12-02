@@ -13,7 +13,7 @@ import { DeletarPessoaComponent } from './deletar-pessoa/deletar-pessoa.componen
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule} from '@angular/forms';
-
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { ReactiveFormsModule} from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
-
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,6 +23,7 @@
 .btnconfig{
     padding: 0px;
     border: 2px solid;
+    margin: 0px;
 }
 .rowtextconfig{
     background-color: snow;
@@ -37,6 +38,7 @@
     margin: 0px;
     border-bottom: 2px solid;
 }
-.footerConfig{
-    border: 2px solid;
+
+.Modalconfig{
+    width: 100%;
 }
